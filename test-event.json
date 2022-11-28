@@ -1,0 +1,11 @@
+{
+  "AutoScalingGroupName": "example_asg",
+  "Service": "AWS Auto Scaling",
+  "Time": "2016-02-26T21:09:59.517Z",
+  "AccountId": "some-account-id",
+  "LifecycleTransition": "autoscaling:EC2_INSTANCE_TERMINATING",
+  "RequestId": "some-request-id-2",
+  "LifecycleActionToken": "some-token",
+  "EC2InstanceId": "i-0f953e6b49c8df919",
+  "LifecycleHookName": "some-LifecycleHookName"
+}
