@@ -6,15 +6,15 @@ It listens to an SNS topic, which is connected to the "autoscaling:EC2_INSTANCE_
 
 These are the steps that this function takes whenever it receives a message from the connected SNS topic:
 
-1 - Check whether the node is alive, if it is not, that means AWS took the node as per the spot instance policy. In this case, terminates the execution
+1 - Checks whether the node is alive, if it is not, that means AWS took the node as per the spot instance policy. In this case, terminates the execution
 
 2 - Cordons the node
 
-3 - Checks for the certain pods on the worker node. (Which pods will be check can be defined inside the function)
+3 - Checks for the certain pods on the worker node. (Which pods will be checked can be defined inside the function)
 
-4 - If one of those pods are running on the node, it puts a cron job inside the node, which controls the pods on the node, once pods die it gives a signal back to the ASG to proceed to terminate the node
+4 - If one of those pods is running on the node, it puts a cron job inside the node, which controls the pods on the node, once pods die it gives a signal back to the ASG to proceed to terminate the node
 
-5 - If none of those pods are running on the node, it gives a signal back to the ASG to proceed to terminate the node
+5 - If none of those pods is running on the node, it gives a signal back to the ASG to proceed to terminate the node
 
 ## Architecture
 
