@@ -7,18 +7,25 @@ It listens to an SNS topic, which is connected to the "autoscaling:EC2_INSTANCE_
 These are the steps that this function takes whenever it receives a message from the connected SNS topic:
 
 1 - Check whether the node is alive, if it is not, that means AWS took the node as per the spot instance policy. In this case, terminates the execution
+
 2 - Cordons the node
+
 3 - Checks for the certain pods on the worker node. (Which pods will be check can be defined inside the function)
+
 4 - If one of those pods are running on the node, it puts a cron job inside the node, which controls the pods on the node, once pods die it gives a signal back to the ASG to proceed to terminate the node
+
 5 - If none of those pods are running on the node, it gives a signal back to the ASG to proceed to terminate the node
 
 ## Architecture
 
-
+![graceful-worker-node-shutdown drawio](https://user-images.githubusercontent.com/95694204/204337627-81693113-c7a0-43ed-b795-c25e485d1562.png)
 
 1 - The auto-scaling dynamic policy decides to terminate the node, this activates its node termination signal lifecycle hook,
+
 2 - The lifecycle hook send a message to an SNS topic and starts to wait within its timeout period,
+
 3 - The SNS topic conveys the message to the Lambda function.
+
 
 ## Used libraries and documents
 
